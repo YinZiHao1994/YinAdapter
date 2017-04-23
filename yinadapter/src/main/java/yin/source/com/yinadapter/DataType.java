@@ -32,7 +32,7 @@ public interface DataType<T> {
      * @param viewHolder
      * @param data
      */
-    void dataBind(CommonViewHolder viewHolder, T data);
+    void dataBind(CommonViewHolder viewHolder, T data,int position);
 
     /**
      * 每一种类型的数据实现自己的点击事件

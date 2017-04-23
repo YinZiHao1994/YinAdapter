@@ -25,7 +25,7 @@ public class PersonBean {
         List<PersonBean> list = new ArrayList<>();
         for (int i=0;i<50;i++) {
             String name = String.valueOf(i);
-            PersonBean personBean = new PersonBean(name, i % 5 == 0 ? 1 : 0, i);
+            PersonBean personBean = new PersonBean(name, (i+1) % 5 == 0 ? 0 : 1, i);
             list.add(personBean);
         }
         return list;

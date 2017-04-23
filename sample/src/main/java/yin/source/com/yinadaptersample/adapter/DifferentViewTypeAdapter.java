@@ -22,6 +22,7 @@ import yin.source.com.yinadaptersample.bean.PersonBean;
 public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
     private Context context;
+
     public DifferentViewTypeAdapter(Context context, List<PersonBean> dataList) {
         super(context, dataList);
         this.context = context;
@@ -41,7 +42,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public void dataBind(CommonViewHolder viewHolder, PersonBean data) {
+            public void dataBind(CommonViewHolder viewHolder, PersonBean data, int position) {
                 viewHolder.<TextView>getView(R.id.tv_name).setText(data.getName());
                 viewHolder.<TextView>getView(R.id.tv_sex).setText("男");
             }
@@ -76,7 +77,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public void dataBind(CommonViewHolder viewHolder, PersonBean data) {
+            public void dataBind(CommonViewHolder viewHolder, PersonBean data, int position) {
                 viewHolder.<TextView>getView(R.id.tv_name).setText(data.getName());
                 viewHolder.<TextView>getView(R.id.tv_sex).setText("女");
             }

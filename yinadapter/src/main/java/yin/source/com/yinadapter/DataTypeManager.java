@@ -21,18 +21,19 @@ class DataTypeManager<T> {
         return dataTypeList.get(viewType).getLayoutId();
     }
 
-    void dataBind(CommonViewHolder viewHolder, T data) {
-        DataType<T> matchedDataType = getMatchedDataType(data);
-        matchedDataType.dataBind(viewHolder, data);
+    void dataBind(CommonViewHolder viewHolder, T data, int position) {
+        DataType<T> matchedDataType = getMatchedDataType(data, position);
+        matchedDataType.dataBind(viewHolder, data, position);
 
     }
 
     /**
      * 根据data获取它所匹配的Type类型，检查是否存在多匹配和无匹配的情况
+     *
      * @param data
      * @return
      */
-    private DataType<T> getMatchedDataType(T data) {
+    private DataType<T> getMatchedDataType(T data, int position) {
         int size = dataTypeList.size();
         List<DataType<T>> matchedDataTypeList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -44,9 +45,9 @@ class DataTypeManager<T> {
         }
         int matchedDataTypeSize = matchedDataTypeList.size();
         if (matchedDataTypeSize == 0) {
-            throw new IllegalArgumentException("No DataType Match Of Data Source :" + data.toString());
+            throw new IllegalArgumentException("No dataType matched the data :" + data.toString() + " in position :" + position);
         } else if (matchedDataTypeSize > 1) {
-            throw new IllegalArgumentException(matchedDataTypeSize + " DataType Class ( " + matchedDataTypeList.toString() + " )Matched the Data Source :" + data.toString());
+            throw new IllegalArgumentException(matchedDataTypeSize + " DataType.Class matched the data :" + data.toString() + " in position :" + position);
         } else {
             return matchedDataTypeList.get(0);
         }
@@ -63,7 +64,7 @@ class DataTypeManager<T> {
     }
 
     int getViewType(T data, int position) {
-        DataType<T> matchedDataType = getMatchedDataType(data);
+        DataType<T> matchedDataType = getMatchedDataType(data, position);
         int indexOfValue = dataTypeList.indexOfValue(matchedDataType);
         return dataTypeList.keyAt(indexOfValue);
     }

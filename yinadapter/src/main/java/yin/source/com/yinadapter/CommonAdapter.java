@@ -87,7 +87,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         T data = dataList.get(position);
-        dataTypeManager.dataBind(holder,data);
+        dataTypeManager.dataBind(holder,data,position);
     }
 
     @Override

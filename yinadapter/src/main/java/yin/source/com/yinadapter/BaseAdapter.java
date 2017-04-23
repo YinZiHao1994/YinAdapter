@@ -15,7 +15,7 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
 
     private int layoutId;
 
-    public BaseAdapter(Context context, List<T> dataList,int layoutId) {
+    public BaseAdapter(Context context, List<T> dataList, int layoutId) {
         super(context, dataList);
         this.layoutId = layoutId;
     }
@@ -36,8 +36,8 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
             }
 
             @Override
-            public void dataBind(CommonViewHolder viewHolder, T data) {
-                onDataBind(viewHolder, data);
+            public void dataBind(CommonViewHolder viewHolder, T data, int position) {
+                onDataBind(viewHolder, data, position);
             }
 
             @Nullable
@@ -52,9 +52,10 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
     }
 
     //子类只需要实现此方法进行数据的绑定显示
-    public abstract void onDataBind(CommonViewHolder viewHolder, T data);
+    public abstract void onDataBind(CommonViewHolder viewHolder, T data, int position);
 
-    @Nullable public abstract DataType.OnItemClickListener getOnItemClickListener();
+    @Nullable
+    public abstract DataType.OnItemClickListener getOnItemClickListener();
 
 
 }
