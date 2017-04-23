@@ -28,7 +28,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         return new CommonViewHolder(itemView);
     }
 
-    <T extends View> T getView(int viewId) {
+    public <T extends View> T getView(int viewId) {
         View childView = childViews.get(viewId);
         if (childView == null) {
              childView = itemView.findViewById(viewId);

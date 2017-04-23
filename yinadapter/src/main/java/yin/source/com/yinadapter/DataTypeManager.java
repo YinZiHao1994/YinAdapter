@@ -2,6 +2,9 @@ package yin.source.com.yinadapter;
 
 import android.support.v4.util.SparseArrayCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by yin on 17/4/21.
  * {@link DataType}管理类 负责将每一个{@link DataType}以key-value的形式储存。
@@ -19,16 +22,36 @@ class DataTypeManager<T> {
     }
 
     void dataBind(CommonViewHolder viewHolder, T data) {
-        int size = dataTypeList.size();
+        DataType<T> matchedDataType = getMatchedDataType(data);
+        matchedDataType.dataBind(viewHolder, data);
 
+    }
+
+    /**
+     * 根据data获取它所匹配的Type类型，检查是否存在多匹配和无匹配的情况
+     * @param data
+     * @return
+     */
+    private DataType<T> getMatchedDataType(T data) {
+        int size = dataTypeList.size();
+        List<DataType<T>> matchedDataTypeList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             DataType<T> dataType = dataTypeList.get(i);
             boolean matching = dataType.isMatching(data);
             if (matching) {
-                dataType.dataBind(viewHolder, data);
+                matchedDataTypeList.add(dataType);
             }
         }
+        int matchedDataTypeSize = matchedDataTypeList.size();
+        if (matchedDataTypeSize == 0) {
+            throw new IllegalArgumentException("No DataType Match Of Data Source :" + data.toString());
+        } else if (matchedDataTypeSize > 1) {
+            throw new IllegalArgumentException(matchedDataTypeSize + " DataType Class ( " + matchedDataTypeList.toString() + " )Matched the Data Source :" + data.toString());
+        } else {
+            return matchedDataTypeList.get(0);
+        }
     }
+
 
     void addViewType(DataType<T> viewType) {
         dataTypeList.append(viewTypeKey, viewType);
@@ -40,13 +63,9 @@ class DataTypeManager<T> {
     }
 
     int getViewType(T data, int position) {
-        for (int i = 0; i < dataTypeList.size(); i++) {
-            DataType<T> dataType = dataTypeList.get(i);
-            if (dataType.isMatching(data)) {
-                return dataTypeList.keyAt(i);
-            }
-        }
-        throw new IllegalArgumentException("No DataType Match Tn The Position = " + position + " Of Data Source");
+        DataType<T> matchedDataType = getMatchedDataType(data);
+        int indexOfValue = dataTypeList.indexOfValue(matchedDataType);
+        return dataTypeList.keyAt(indexOfValue);
     }
 
     DataType.OnItemClickListener getOnItemClickListener(int viewType) {

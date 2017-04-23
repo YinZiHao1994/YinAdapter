@@ -8,7 +8,7 @@ import android.view.View;
  * 当数据源根据不同属性有实现各自的点击事件、显示样式……时，用此类实现各自的功能
  */
 
-interface DataType<T> {
+public interface DataType<T> {
 
     /**
      * 不同数据需要显示的样式布局可能不同，在此返回它们对应的itemView的layoutId
