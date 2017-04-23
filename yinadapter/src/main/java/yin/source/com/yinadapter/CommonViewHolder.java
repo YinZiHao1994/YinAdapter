@@ -40,7 +40,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         return (T)childView;
     }
 
-    public View getItemView() {
+    View getItemView() {
         return itemView;
     }
 }
