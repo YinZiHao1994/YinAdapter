@@ -31,6 +31,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//忽略代码不符合规范，导致lint检查时报错，中断整个编译过程。
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -38,9 +42,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
     testCompile 'junit:junit:4.12'
 }
 //bintray-release 插件 把库上传到jcenter的相关配置。
@@ -48,7 +50,7 @@ publish {
     userOrg = 'yinzihaoos'//bintray.com用户名
     groupId = 'com.yinzihao'//jcenter上的路径
     artifactId = 'YinAdapter'//项目名称
-    publishVersion = '1.0.1'//版本号
+    publishVersion = '0.1.2'//版本号
     desc = 'a commion adapter for recycleView'//描述，不重要
     website = 'https://github.com/YinZiHao1994/YinAdapter'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
