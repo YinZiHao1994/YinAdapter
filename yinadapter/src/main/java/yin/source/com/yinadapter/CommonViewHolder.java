@@ -25,19 +25,23 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     static CommonViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId) {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent, false);
-        return new CommonViewHolder(itemView);
+        return createViewHolder(itemView);
+    }
+
+    static CommonViewHolder createViewHolder(View view) {
+        return new CommonViewHolder(view);
     }
 
     public <T extends View> T getView(int viewId) {
         View childView = childViews.get(viewId);
         if (childView == null) {
-             childView = itemView.findViewById(viewId);
+            childView = itemView.findViewById(viewId);
             if (childView == null) {
                 throw new IllegalArgumentException("This viewId is not match a childView in the itemView");
             }
-            childViews.put(viewId,childView);
+            childViews.put(viewId, childView);
         }
-        return (T)childView;
+        return (T) childView;
     }
 
     View getItemView() {
