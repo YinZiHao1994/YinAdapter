@@ -28,8 +28,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     }
 
     /**
-     * 子类需要返回实现了{@link DataType}接口的List
-     * @return
+     * @return 子类需要返回实现了{@link DataType}接口的List
      */
     public abstract List<DataType<T>> getDataTypes();
 
@@ -46,7 +45,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
             return super.getItemViewType(position);
         } else {
             T data = dataList.get(position);
-            return dataTypeManager.getViewType(data,position);
+            return dataTypeManager.getViewType(data, position);
         }
     }
 
@@ -66,7 +65,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
                 DataType.OnItemClickListener onItemClickListener = dataTypeManager.getOnItemClickListener(viewType);
                 if (onItemClickListener != null) {
                     int position = viewHolder.getAdapterPosition();
-                    onItemClickListener.onItemClick(viewHolder,view,position);
+                    onItemClickListener.onItemClick(viewHolder, view, position);
                 }
             }
         });
@@ -87,7 +86,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         T data = dataList.get(position);
-        dataTypeManager.dataBind(holder,data,position);
+        dataTypeManager.dataBind(holder, data, position);
     }
 
     @Override
@@ -98,8 +97,6 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         }
         return itemCount;
     }
-
-
 
 
 }

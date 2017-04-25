@@ -2,16 +2,8 @@ apply plugin: 'com.android.library'
 //bintray-release 插件 把库上传到jcenter的相关配置
 apply plugin: 'com.novoda.bintray-release'
 
-//把库上传到jcenter的相关配置。在首部添加，是用上传插件，比较重要的是version,他代表你的库的版本，你下次更新时将版本号增加就可以了
-//apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
-//version = "1.0.0"
 
 android {
-//
-    //把库上传到jcenter的相关配置。这个resourcePrefix没有的话不知道碍不碍事，是资源的前缀符号（自定义控件xml属性时有用）
-//    resourcePrefix "yin_"
 
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -42,9 +34,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
+
 //bintray-release 插件 把库上传到jcenter的相关配置。
 publish {
     userOrg = 'yinzihaoos'//bintray.com用户名
@@ -54,97 +47,3 @@ publish {
     desc = 'a commion adapter for recycleView'//描述，不重要
     website = 'https://github.com/YinZiHao1994/YinAdapter'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
-
-//把库上传到jcenter的相关配置（以下直到结束）。
-//def siteUrl = 'https://github.com/YinZiHao1994/YinAdapter'   // 项目的主页
-//def gitUrl = 'git@github.com:YinZiHao1994/YinAdapter.git'   // Git仓库的url
-//def proName = 'YinAdapter'  //项目的名称，将会显示在bintray
-//def proDesc = 'a commion adapter for recycleView' //项目的描述，不会有什么影响，随便写点
-//def yourId = 'yinzihao'  //bintrayID
-//def yourName = 'YinZiHao'  //不重要，你自己的nickname就可以
-//def yourEmail = '1035909389@qq.com'  //email
-//
-//group = "yin.source.com.yinadapter"            // Maven Group ID for the artifact，一般填你唯一的包名
-//
-//install {
-//    repositories.mavenInstaller {
-//        // This generates POM.xml with proper parameters一
-//        pom {
-//            project {
-//                packaging 'aar'
-//
-//                // Add your description here
-//                name proDesc
-//                url siteUrl
-//
-//                // Set your license
-//                licenses {
-//                    license {
-//                        name 'The Apache Software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id yourId
-//                        name yourName
-//                        email yourEmail
-//                    }
-//                }
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//
-//                }
-//            }
-//        }
-//    }
-//}
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-//
-//artifacts {
-//    archives sourcesJar
-//}
-//
-//android.libraryVariants.all { variant ->
-//    println variant.javaCompile.classpath.files
-//    if(variant.name == 'release') { //我们只需 release 的 javadoc
-//        task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
-//            source = variant.javaCompile.source
-//            classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
-//            options {
-//                encoding "utf-8"
-//                links "http://docs.oracle.com/javase/7/docs/api/"
-//                linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
-//            }
-//            exclude '**/BuildConfig.java'
-//            exclude '**/R.java'
-//        }
-//        task("javadoc${variant.name.capitalize()}Jar", type: Jar, dependsOn: "generate${variant.name.capitalize()}Javadoc") {
-//            classifier = 'javadoc'
-//            from tasks.getByName("generate${variant.name.capitalize()}Javadoc").destinationDir
-//        }
-//        artifacts {
-//            archives tasks.getByName("javadoc${variant.name.capitalize()}Jar")
-//        }
-//    }
-//}
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"
-//        name = proName    //发布到JCenter上的项目名字
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["Apache-2.0"]
-//        publish = true
-//    }
-//}

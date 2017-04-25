@@ -11,18 +11,14 @@ import android.view.View;
 public interface DataType<T> {
 
     /**
-     * 不同数据需要显示的样式布局可能不同，在此返回它们对应的itemView的layoutId
-     *
-     * @return
+     * @return 不同数据需要显示的样式布局可能不同，在此返回它们对应的itemView的layoutId
      */
     int getLayoutId();
 
     /**
-     * 最重要的，用于分辨某一数据是否匹配当前{@link DataType}实现类。
-     * 若此data是当前实现类的目标数据类型，返回true
-     *
      * @param data
-     * @return
+     * @return 最重要的，用于分辨某一数据是否匹配当前{@link DataType}实现类。
+     * 若此data是当前实现类的目标数据类型，返回true
      */
     boolean isMatching(T data);
 
@@ -32,13 +28,15 @@ public interface DataType<T> {
      * @param viewHolder
      * @param data
      */
-    void dataBind(CommonViewHolder viewHolder, T data,int position);
+    void dataBind(CommonViewHolder viewHolder, T data, int position);
 
     /**
      * 每一种类型的数据实现自己的点击事件
+     *
      * @return
      */
-    @Nullable OnItemClickListener getOnClickListener();
+    @Nullable
+    OnItemClickListener getOnClickListener();
 
     interface OnItemClickListener {
         void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
