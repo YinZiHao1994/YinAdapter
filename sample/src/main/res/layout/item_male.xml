@@ -25,6 +25,5 @@
 
     </LinearLayout>
 
-    <include layout="@layout/line_item" />
 
 </LinearLayout>
