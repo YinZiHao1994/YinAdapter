@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by yin on 17/4/21.
@@ -46,5 +49,23 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     View getItemView() {
         return itemView;
+    }
+
+
+    /**
+     *  以下为{@link CommonViewHolder#getView(int)}} 的帮助方法
+     * @param viewId
+     * @return
+     */
+    public TextView getTextView(int viewId) {
+        return getView(viewId);
+    }
+
+    public ImageView getImageView(int viewId) {
+        return getView(viewId);
+    }
+
+    public Button getButton(int viewId) {
+        return getView(viewId);
     }
 }

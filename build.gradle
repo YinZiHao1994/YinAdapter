@@ -35,3 +35,7 @@ allprojects {
         }
     }
 }
+
+
+//把库上传到jcenter的命令
+//gradlew clean build bintrayUpload   -PbintrayUser=xxx   -PbintrayKey=xxx   -PdryRun=false

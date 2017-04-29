@@ -43,7 +43,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
             @Override
             public void dataBind(CommonViewHolder viewHolder, PersonBean data, int position) {
-                viewHolder.<TextView>getView(R.id.tv_name).setText(data.getName());
+                viewHolder.getTextView(R.id.tv_name).setText(data.getName());
                 viewHolder.<TextView>getView(R.id.tv_sex).setText("男");
             }
 
