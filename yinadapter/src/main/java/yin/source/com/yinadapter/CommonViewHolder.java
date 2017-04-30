@@ -54,8 +54,6 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     /**
      *  以下为{@link CommonViewHolder#getView(int)}} 的帮助方法
-     * @param viewId
-     * @return
      */
     public TextView getTextView(int viewId) {
         return getView(viewId);

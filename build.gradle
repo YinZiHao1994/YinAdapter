@@ -19,14 +19,8 @@ allprojects {
     repositories {
         jcenter()
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-//bintray-release 插件 把库上传到jcenter的相关配置
-allprojects {
+    //bintray-release 插件 把库上传到jcenter的相关配置
     tasks.withType(Javadoc) {
         options{
             encoding "UTF-8"
@@ -35,6 +29,11 @@ allprojects {
         }
     }
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
 
 
 //把库上传到jcenter的命令

@@ -11,7 +11,7 @@ import android.view.View;
 /**
  * Created by yin on 2017/4/27.
  * 分组Decoration，类似联系人列表首字母的分组
- * 泛型T的意义见{@link SectionCallback <T>}
+ * 泛型T的意义见{@link SectionCallback}
  */
 
 public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
