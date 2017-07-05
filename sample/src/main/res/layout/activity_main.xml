@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yin.source.com.yinadaptersample.MainActivity">
+    tools:context="yin.source.com.yinadaptersample.MainActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_same_view_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="相同显示样式" />
+
 
     <Button
         android:id="@+id/btn_different_view_type"

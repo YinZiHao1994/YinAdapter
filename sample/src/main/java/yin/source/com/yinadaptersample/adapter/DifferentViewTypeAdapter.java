@@ -3,6 +3,7 @@ package yin.source.com.yinadaptersample.adapter;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,21 +48,15 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
                 viewHolder.<TextView>getView(R.id.tv_sex).setText("男");
             }
 
-            @Nullable
             @Override
-            public OnItemClickListener getOnClickListener() {
-                return new OnItemClickListener() {
-                    @Override
-                    public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-                        Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
-                    }
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+                Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
+            }
 
-                    @Override
-                    public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
-                        Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                };
+            @Override
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+                Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
+                return false;
             }
         };
 
@@ -78,14 +73,19 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
             @Override
             public void dataBind(CommonViewHolder viewHolder, PersonBean data, int position) {
-                viewHolder.<TextView>getView(R.id.tv_name).setText(data.getName());
+                viewHolder.getTextView(R.id.tv_name).setText(data.getName());
                 viewHolder.<TextView>getView(R.id.tv_sex).setText("女");
             }
 
-            @Nullable
             @Override
-            public OnItemClickListener getOnClickListener() {
-                return null;
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+                Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+                Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
+                return false;
             }
         };
         List<DataType<PersonBean>> list = new ArrayList<>();

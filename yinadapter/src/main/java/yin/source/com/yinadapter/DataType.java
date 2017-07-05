@@ -30,19 +30,8 @@ public interface DataType<T> {
      */
     void dataBind(CommonViewHolder viewHolder, T data, int position);
 
-    /**
-     * 每一种类型的数据实现自己的点击事件
-     *
-     * @return
-     */
-    @Nullable
-    OnItemClickListener getOnClickListener();
+    void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
 
-    interface OnItemClickListener {
-        void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
-
-        boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position);
-    }
-
+    boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position);
 
 }

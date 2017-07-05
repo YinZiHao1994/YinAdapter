@@ -2,6 +2,8 @@ package yin.source.com.yinadapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +42,16 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
                 onDataBind(viewHolder, data, position);
             }
 
-            @Nullable
             @Override
-            public OnItemClickListener getOnClickListener() {
-                return getOnItemClickListener();
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+                BaseAdapter.this.onItemClick(commonViewHolder, view, position);
             }
+
+            @Override
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+                return BaseAdapter.this.onItemLongClick(commonViewHolder, view, position);
+            }
+
         };
 
         dataTypes.add(dataType);
@@ -54,8 +61,9 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
     //子类只需要实现此方法进行数据的绑定显示
     public abstract void onDataBind(CommonViewHolder viewHolder, T data, int position);
 
-    @Nullable
-    public abstract DataType.OnItemClickListener getOnItemClickListener();
 
+    public abstract void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
+
+    public abstract boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position);
 
 }

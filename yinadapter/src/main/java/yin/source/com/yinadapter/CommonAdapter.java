@@ -62,23 +62,16 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         viewHolder.getItemView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataType.OnItemClickListener onItemClickListener = dataTypeManager.getOnItemClickListener(viewType);
-                if (onItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    onItemClickListener.onItemClick(viewHolder, view, position);
-                }
+                int position = viewHolder.getAdapterPosition();
+                dataTypeManager.getDateType(viewType).onItemClick(viewHolder, view, position);
             }
         });
 
         viewHolder.getItemView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                DataType.OnItemClickListener onItemClickListener = dataTypeManager.getOnItemClickListener(viewType);
-                if (onItemClickListener != null) {
-                    int position = viewHolder.getAdapterPosition();
-                    return onItemClickListener.onItemLongClick(viewHolder, view, position);
-                }
-                return false;
+                int position = viewHolder.getAdapterPosition();
+                return dataTypeManager.getDateType(viewType).onItemLongClick(viewHolder, view, position);
             }
         });
     }

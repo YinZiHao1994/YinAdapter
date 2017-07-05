@@ -59,6 +59,10 @@ class DataTypeManager<T> {
         viewTypeKey++;
     }
 
+    DataType<T> getDateType(int viewType) {
+        return dataTypeList.get(viewType);
+    }
+
     SparseArrayCompat<DataType<T>> getDataTypeList() {
         return dataTypeList;
     }
@@ -67,10 +71,6 @@ class DataTypeManager<T> {
         DataType<T> matchedDataType = getMatchedDataType(data, position);
         int indexOfValue = dataTypeList.indexOfValue(matchedDataType);
         return dataTypeList.keyAt(indexOfValue);
-    }
-
-    DataType.OnItemClickListener getOnItemClickListener(int viewType) {
-        return dataTypeList.get(viewType).getOnClickListener();
     }
 
 }
