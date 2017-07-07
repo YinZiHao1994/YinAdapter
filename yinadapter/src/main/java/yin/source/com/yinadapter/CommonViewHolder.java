@@ -47,10 +47,13 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         return (T) childView;
     }
 
-    View getItemView() {
+    public View getItemView() {
         return itemView;
     }
 
+    public SparseArrayCompat<View> getChildViews() {
+        return childViews;
+    }
 
     /**
      *  以下为{@link CommonViewHolder#getView(int)}} 的帮助方法
