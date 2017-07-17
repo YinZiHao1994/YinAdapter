@@ -42,9 +42,9 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
                 setSectionBackgroundPaint(sectionBackgroundPaint);
             }
 
-            Paint textPain = configureCallback.getTextPain();
-            if (textPain != null) {
-                setTextPaint(textPain);
+            Paint textPaint = configureCallback.getTextPaint();
+            if (textPaint != null) {
+                setTextPaint(textPaint);
             }
             this.sectionDecorationHeight = dip2px(context, configureCallback.getSectionDecorationHeight());
         }
@@ -126,7 +126,7 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
 
     public interface ConfigureCallback {
         //用于绘制分组栏文字的画笔
-        Paint getTextPain();
+        Paint getTextPaint();
 
         //用于绘制分组栏北京的画笔
         Paint getSectionBackgroundPaint();
