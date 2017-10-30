@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 /**
@@ -85,7 +86,9 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
                         parent.getWidth() - parent.getPaddingRight(), childViewTop, sectionBackgroundPaint);
                 Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
 
-                c.drawText(sectionTitle, paddingLeft, childViewTop - sectionDecorationHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2, textPaint);
+                if (!TextUtils.isEmpty(sectionTitle)) {
+                    c.drawText(sectionTitle, paddingLeft, childViewTop - sectionDecorationHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2, textPaint);
+                }
             }
         }
     }
