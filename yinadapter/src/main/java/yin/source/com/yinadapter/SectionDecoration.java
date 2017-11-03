@@ -22,6 +22,7 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
     private Paint sectionBackgroundPaint;
     private Context context;
     private int sectionDecorationHeight = 80;
+    private int titleMarginStart;
 
     public SectionDecoration(Context context, SectionCallback<T> sectionCallback) {
         super();
@@ -48,6 +49,7 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
                 setTextPaint(textPaint);
             }
             this.sectionDecorationHeight = dip2px(context, configureCallback.getSectionDecorationHeight());
+            this.titleMarginStart = dip2px(context, configureCallback.getTitleMarginStart());
         }
 
     }
@@ -87,7 +89,7 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
                 Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
 
                 if (!TextUtils.isEmpty(sectionTitle)) {
-                    c.drawText(sectionTitle, paddingLeft, childViewTop - sectionDecorationHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2, textPaint);
+                    c.drawText(sectionTitle, paddingLeft + titleMarginStart, childViewTop - sectionDecorationHeight / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2, textPaint);
                 }
             }
         }
@@ -131,10 +133,13 @@ public class SectionDecoration<T> extends RecyclerView.ItemDecoration {
         //用于绘制分组栏文字的画笔
         Paint getTextPaint();
 
-        //用于绘制分组栏北京的画笔
+        //用于绘制分组栏背景的画笔
         Paint getSectionBackgroundPaint();
 
         //分组栏的高度，单位dp
         int getSectionDecorationHeight();
+
+        //标题距离左边界的距离，单位 dp
+        int getTitleMarginStart();
     }
 }

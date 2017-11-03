@@ -33,45 +33,49 @@ public class DifferentViewTypeActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycle_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         personBeanList = PersonBean.init();
-        recyclerView.setAdapter(new DifferentViewTypeAdapter(this,personBeanList ));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(new DifferentViewTypeAdapter(this, personBeanList));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
 
         SectionDecoration<Integer> sectionDecoration = new SectionDecoration<Integer>
                 (this, new SectionDecoration.SectionCallback<Integer>() {
-            @Override
-            public Integer getSectionSign(int position) {
-                return personBeanList.get(position).getSex();
-            }
+                    @Override
+                    public Integer getSectionSign(int position) {
+                        return personBeanList.get(position).getSex();
+                    }
 
-            @Override
-            public String getSectionTitle(int position) {
-                return personBeanList.get(position).getName();
-            }
-        }, new SectionDecoration.ConfigureCallback() {
-            @Override
-            public Paint getTextPaint() {
-                Paint textPaint = new Paint();
-                textPaint.setTextSize(50);
-                textPaint.setColor(Color.RED);
-                return textPaint;
-            }
+                    @Override
+                    public String getSectionTitle(int position) {
+                        return personBeanList.get(position).getName();
+                    }
+                }, new SectionDecoration.ConfigureCallback() {
+                    @Override
+                    public Paint getTextPaint() {
+                        Paint textPaint = new Paint();
+                        textPaint.setTextSize(50);
+                        textPaint.setColor(Color.RED);
+                        return textPaint;
+                    }
 
-            @Override
-            public Paint getSectionBackgroundPaint() {
-                Paint backgroundPaint = new Paint();
-                backgroundPaint.setColor(Color.LTGRAY);
-                return backgroundPaint;
-            }
+                    @Override
+                    public Paint getSectionBackgroundPaint() {
+                        Paint backgroundPaint = new Paint();
+                        backgroundPaint.setColor(Color.LTGRAY);
+                        return backgroundPaint;
+                    }
 
-            @Override
-            public int getSectionDecorationHeight() {
-                return 60;
-            }
-        });
+                    @Override
+                    public int getSectionDecorationHeight() {
+                        return 60;
+                    }
+
+                    @Override
+                    public int getTitleMarginStart() {
+                        return 10;
+                    }
+                });
 
         recyclerView.addItemDecoration(sectionDecoration);
-
 
 
     }
