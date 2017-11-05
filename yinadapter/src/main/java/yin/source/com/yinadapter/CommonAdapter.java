@@ -91,5 +91,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         return itemCount;
     }
 
-
+    public List<T> getDataList() {
+        return dataList;
+    }
 }
