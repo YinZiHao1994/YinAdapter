@@ -20,6 +20,9 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     private DataTypeManager<T> dataTypeManager;
 
     public CommonAdapter(Context context, List<T> dataList) {
+        if (dataList == null) {
+            throw new RuntimeException("dataList can not be null");
+        }
         this.context = context;
         this.dataList = dataList;
 

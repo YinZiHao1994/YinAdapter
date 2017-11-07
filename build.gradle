@@ -42,4 +42,4 @@ task clean(type: Delete) {
 //把库上传到jcenter的命令
 //windows: gradlew clean build bintrayUpload   -PbintrayUser=xxx   -PbintrayKey=xxx   -PdryRun=false
 
-//osX:  ./gradlew clean build bintrayUpload   -PbintrayUser=xxx   -PbintrayKey=xxx   -PdryRun=false
+//osX:  ./gradlew clean build bintrayUpload   -PbintrayUser=xxx   -PbintrayKey=f3a9bd7e8eb569ee6aedadeee23813cdc6d57e06   -PdryRun=false
