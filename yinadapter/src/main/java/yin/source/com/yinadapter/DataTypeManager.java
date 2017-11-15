@@ -18,13 +18,16 @@ class DataTypeManager<T> {
 
 
     int getLayoutId(int viewType) {
-        return dataTypeList.get(viewType).getLayoutId();
+        DataType<T> dataType = dataTypeList.get(viewType);
+        if (dataType == null) {
+            throw new RuntimeException("not find matched dataType");
+        }
+        return dataType.getLayoutId();
     }
 
     void dataBind(CommonViewHolder viewHolder, T data, int position) {
         DataType<T> matchedDataType = getMatchedDataType(data, position);
         matchedDataType.dataBind(viewHolder, data, position);
-
     }
 
     /**
@@ -38,7 +41,7 @@ class DataTypeManager<T> {
         List<DataType<T>> matchedDataTypeList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             DataType<T> dataType = dataTypeList.get(i);
-            boolean matching = dataType.isMatching(data);
+            boolean matching = dataType.isMatching(data, position);
             if (matching) {
                 matchedDataTypeList.add(dataType);
             }

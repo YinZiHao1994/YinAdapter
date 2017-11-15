@@ -1,6 +1,5 @@
 package yin.source.com.yinadapter;
 
-import android.support.annotation.Nullable;
 import android.view.View;
 
 /**
@@ -17,10 +16,11 @@ public interface DataType<T> {
 
     /**
      * @param data
+     * @param position
      * @return 最重要的，用于分辨某一数据是否匹配当前{@link DataType}实现类。
      * 若此data是当前实现类的目标数据类型，返回true
      */
-    boolean isMatching(T data);
+    boolean isMatching(T data, int position);
 
     /**
      * 实现数据与viewHolder的绑定

@@ -36,8 +36,16 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     public abstract List<DataType<T>> getDataTypes();
 
 
-    private void addDataTypes(List<DataType<T>> viewTypes) {
-        for (DataType<T> viewType : viewTypes) {
+    void addDataTypes(List<DataType<T>> viewTypes) {
+        if (viewTypes != null) {
+            for (DataType<T> viewType : viewTypes) {
+                dataTypeManager.addViewType(viewType);
+            }
+        }
+    }
+
+    void addDataType(DataType<T> viewType) {
+        if (viewType != null) {
             dataTypeManager.addViewType(viewType);
         }
     }
@@ -47,7 +55,14 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         if (dataTypeManager.getDataTypeList().size() <= 0) {
             return super.getItemViewType(position);
         } else {
-            T data = dataList.get(position);
+            //当包装了 LoadMoreAdapter 时，LoadMoreAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
+            //多出来的最后一项实际并不存在于 dataList 中，直接做 null 在后续通过位置处理
+            T data;
+            if (position < dataList.size()) {
+                data = dataList.get(position);
+            } else {
+                data = null;
+            }
             return dataTypeManager.getViewType(data, position);
         }
     }
@@ -56,7 +71,6 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layoutId = dataTypeManager.getLayoutId(viewType);
         CommonViewHolder viewHolder = CommonViewHolder.createViewHolder(context, parent, layoutId);
-
         setOnLickListener(viewHolder, viewType);
         return viewHolder;
     }
@@ -81,7 +95,14 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        T data = dataList.get(position);
+        T data;
+        //当包装了 LoadMoreAdapter 时，LoadMoreAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
+        //多出来的最后一项实际并不存在于 dataList 中，直接做 null 在后续通过位置处理
+        if (position < dataList.size()) {
+            data = dataList.get(position);
+        } else {
+            data = null;
+        }
         dataTypeManager.dataBind(holder, data, position);
     }
 

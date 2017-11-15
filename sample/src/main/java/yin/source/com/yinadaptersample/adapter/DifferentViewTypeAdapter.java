@@ -1,9 +1,7 @@
 package yin.source.com.yinadaptersample.adapter;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +36,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public boolean isMatching(PersonBean data) {
+            public boolean isMatching(PersonBean data, int position) {
                 return data.getSex() == 1;
             }
 
@@ -67,7 +65,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public boolean isMatching(PersonBean data) {
+            public boolean isMatching(PersonBean data, int position) {
                 return data.getSex() == 0;
             }
 

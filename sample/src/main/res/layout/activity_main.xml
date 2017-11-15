@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yin.source.com.yinadaptersample.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="yin.source.com.yinadaptersample.MainActivity">
 
     <Button
         android:id="@+id/btn_same_view_type"
@@ -18,5 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="不同显示样式" />
+
+    <Button
+        android:id="@+id/btn_load_more_adapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="带加载更多的 adapter" />
 
 </LinearLayout>

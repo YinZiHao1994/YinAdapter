@@ -23,7 +23,7 @@ public class PersonBean {
 
     public static List<PersonBean> init() {
         List<PersonBean> list = new ArrayList<>();
-        for (int i=0;i<50;i++) {
+        for (int i=0;i<55;i++) {
             String name = String.valueOf(i);
             PersonBean personBean = new PersonBean(name, (i+1) % 5 == 0 ? 0 : 1, i);
             list.add(personBean);
@@ -54,5 +54,15 @@ public class PersonBean {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PersonBean{" +
+                "name='" + name + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                '}';
     }
 }
