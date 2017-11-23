@@ -55,7 +55,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         if (dataTypeManager.getDataTypeList().size() <= 0) {
             return super.getItemViewType(position);
         } else {
-            //当包装了 LoadMoreAdapter 时，LoadMoreAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
+            //当包装了 LoadMoreWrapperAdapter 时，LoadMoreWrapperAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
             //多出来的最后一项实际并不存在于 dataList 中，直接做 null 在后续通过位置处理
             T data;
             if (position < dataList.size()) {
@@ -96,7 +96,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         T data;
-        //当包装了 LoadMoreAdapter 时，LoadMoreAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
+        //当包装了 LoadMoreWrapperAdapter 时，LoadMoreWrapperAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
         //多出来的最后一项实际并不存在于 dataList 中，直接做 null 在后续通过位置处理
         if (position < dataList.size()) {
             data = dataList.get(position);

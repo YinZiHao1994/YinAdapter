@@ -31,7 +31,7 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
 
             @Override
             public boolean isMatching(T data, int position) {
-                //当包装了 LoadMoreAdapter 时，LoadMoreAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
+                //当包装了 LoadMoreWrapperAdapter 时，LoadMoreWrapperAdapter 中的 getItemCount() 会返回实际数据+1用来展示最后"加载更多"的一栏，
                 //当调用到此方法时，判断 position 是否属于真实列表数据中位置。如果是，认为数据源viewType全部相同，直接返回true表示所有数据都用此样式显示
                 if (position < getItemCount()) {
                     return true;

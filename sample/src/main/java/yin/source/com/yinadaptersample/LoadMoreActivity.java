@@ -12,7 +12,7 @@ import java.util.List;
 
 import yin.source.com.yinadapter.BaseAdapter;
 import yin.source.com.yinadapter.CommonViewHolder;
-import yin.source.com.yinadapter.LoadMoreAdapter;
+import yin.source.com.yinadapter.LoadMoreWrapperAdapter;
 import yin.source.com.yinadaptersample.bean.PersonBean;
 
 /**
@@ -48,11 +48,11 @@ public class LoadMoreActivity extends AppCompatActivity {
                 return false;
             }
         };
-        final LoadMoreAdapter<PersonBean> loadMoreAdapter = new LoadMoreAdapter<>(adapter, R.layout.load_more_layout);
+        final LoadMoreWrapperAdapter<PersonBean> loadMoreWrapperAdapter = new LoadMoreWrapperAdapter<>(adapter, R.layout.load_more_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(loadMoreAdapter);
+        recyclerView.setAdapter(loadMoreWrapperAdapter);
 
-        recyclerView.addOnScrollListener(new LoadMoreAdapter.OnLoadMoreListener() {
+        recyclerView.addOnScrollListener(new LoadMoreWrapperAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
                 Log.w("yzh", "load more");
@@ -60,12 +60,12 @@ public class LoadMoreActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (personBeanList.size() > 100) {
-                            loadMoreAdapter.noMoreToLoad(true);
+                            loadMoreWrapperAdapter.noMoreToLoad(true);
                             return;
                         }
                         List<PersonBean> init = PersonBean.init();
                         personBeanList.addAll(init);
-                        loadMoreAdapter.notifyDataSetChanged();
+                        loadMoreWrapperAdapter.notifyDataSetChanged();
                     }
                 }, 1000);
             }
