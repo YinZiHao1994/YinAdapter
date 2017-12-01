@@ -179,7 +179,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
                         }
                     }
                     // 判断是否滑动到了最后一个item，并且是向上滑动
-                    if (lastItemPosition >= (itemCount - 2) && wantToLoadMore && haveMore) {
+                    if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && haveMore) {
                         //加载更多
                         onLoadMore();
                     }
@@ -192,8 +192,8 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            // 大于0表示正在向上滑动，小于等于0表示停止或向下滑动
-            wantToLoadMore = dy > 0;
+            // 大于0表示正在向上滑动，小于等于0表示停止或向下滑动,等于零表示第一页的数据不足以占满列表，无法再向上滑动
+            wantToLoadMore = dy >= 0;
         }
     }
 
