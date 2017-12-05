@@ -9,6 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by yin on 2017/12/4.
  */
@@ -17,7 +20,7 @@ public class SideMenuLayout extends FrameLayout {
 
     private ViewDragHelper viewDragHelper;
     private int menuStartLeft;
-    private int menuWidth;
+    private int totalMenuWidth;
     private OnMenuClickListener onMenuClickListener;
 
     //触发菜单打开的比例，比如当用户划开菜单总长度的0.3之后松手菜单自动继续打开
@@ -26,7 +29,8 @@ public class SideMenuLayout extends FrameLayout {
     //内容
     private View contentView;
     //菜单
-    private View menu;
+//    private View menu;
+    private List<View> menuList;
 
     private MenuState menuState = MenuState.close;
 
@@ -70,8 +74,8 @@ public class SideMenuLayout extends FrameLayout {
 //                Log.d("yzh", "left = " + left + "\ndx = " + dx);
                 if (left > 0) {
                     return 0;
-                } else if (left < -menuWidth) {
-                    return -menuWidth;
+                } else if (left < -totalMenuWidth) {
+                    return -totalMenuWidth;
                 }
                 return left;
             }
@@ -85,7 +89,9 @@ public class SideMenuLayout extends FrameLayout {
             public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
                 super.onViewPositionChanged(changedView, left, top, dx, dy);
                 if (changedView == contentView) {
-                    menu.offsetLeftAndRight(dx);
+                    for (View menuView : menuList) {
+                        menuView.offsetLeftAndRight(dx);
+                    }
                 }
                 invalidate();
             }
@@ -94,11 +100,12 @@ public class SideMenuLayout extends FrameLayout {
             public void onViewReleased(View releasedChild, float xvel, float yvel) {
                 super.onViewReleased(releasedChild, xvel, yvel);
 //                Log.d("yzh", "xvel = " + xvel + "\nview.getLeft() = " + menu.getLeft() + "\nmenuStartLeft = " + menuStartLeft);
+                View firstMenuView = menuList.get(0);
                 if (xvel < 0) {
                     open();
                 } else if (xvel > 0) {
                     close();
-                } else if (menuState == MenuState.close && menuStartLeft - menu.getLeft() > menu.getMeasuredWidth() * menuTrigger) {
+                } else if (menuState == MenuState.close && menuStartLeft - firstMenuView.getLeft() > totalMenuWidth * menuTrigger) {
                     open();
                 } else {
                     close();
@@ -117,7 +124,7 @@ public class SideMenuLayout extends FrameLayout {
     }
 
     private void open() {
-        if (viewDragHelper.smoothSlideViewTo(contentView, 0 - menuWidth, 0)) {
+        if (viewDragHelper.smoothSlideViewTo(contentView, 0 - totalMenuWidth, 0)) {
             ViewCompat.postInvalidateOnAnimation(this);
         }
         if (menuState == MenuState.close) {
@@ -151,16 +158,20 @@ public class SideMenuLayout extends FrameLayout {
         super.onFinishInflate();
         int childCount = getChildCount();
 
-        if (childCount > 0) {
-            contentView = getChildAt(0);
+        if (childCount < 2) {
+            throw new IllegalArgumentException("childCount is less than 2");
         }
-        if (childCount > 1) {
-            menu = getChildAt(1);
-            menu.setOnClickListener(new OnClickListener() {
+        contentView = getChildAt(0);
+
+        menuList = new ArrayList<>();
+        for (int i = 1; i < childCount; i++) {
+            View menuView = getChildAt(i);
+            menuList.add(menuView);
+            menuView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onMenuClickListener != null) {
-                        onMenuClickListener.onMenuClickListener();
+                        onMenuClickListener.onMenuClickListener(v);
                     }
                 }
             });
@@ -175,9 +186,11 @@ public class SideMenuLayout extends FrameLayout {
         if (contentView != null) {
             menuStartLeft = contentView.getMeasuredWidth();
         }
-        if (menu != null) {
-            menuWidth = menu.getMeasuredWidth();
-            menu.layout(menuStartLeft, 0, menuStartLeft + menuWidth, menu.getBottom());
+
+        totalMenuWidth = 0;
+        for (View menuView : menuList) {
+            menuView.layout(menuStartLeft + totalMenuWidth, 0, menuStartLeft + totalMenuWidth + menuView.getMeasuredWidth(), menuView.getBottom());
+            totalMenuWidth += menuView.getMeasuredWidth();
         }
 
     }
@@ -187,7 +200,7 @@ public class SideMenuLayout extends FrameLayout {
     }
 
     public interface OnMenuClickListener {
-        void onMenuClickListener();
+        void onMenuClickListener(View view);
     }
 
     public void openMenu() {

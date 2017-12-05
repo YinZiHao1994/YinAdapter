@@ -37,7 +37,7 @@ public class SideMenuActivity extends AppCompatActivity {
                 SideMenuLayout itemView = (SideMenuLayout) viewHolder.getItemView();
                 itemView.setOnMenuClickListener(new SideMenuLayout.OnMenuClickListener() {
                     @Override
-                    public void onMenuClickListener() {
+                    public void onMenuClickListener(View view) {
                         Toast.makeText(SideMenuActivity.this, "click", Toast.LENGTH_SHORT).show();
                     }
                 });
