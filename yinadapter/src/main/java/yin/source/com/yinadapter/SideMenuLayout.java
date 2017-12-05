@@ -150,7 +150,15 @@ public class SideMenuLayout extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         viewDragHelper.processTouchEvent(event);
-        return true;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                // 开始拖动后，发送一个cancel事件用来取消点击效果
+                MotionEvent obtain = MotionEvent.obtain(event);
+                obtain.setAction(MotionEvent.ACTION_CANCEL);
+                super.onTouchEvent(obtain);
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override

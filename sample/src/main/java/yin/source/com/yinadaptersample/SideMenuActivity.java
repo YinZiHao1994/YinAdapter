@@ -46,8 +46,7 @@ public class SideMenuActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-                SideMenuLayout itemView = (SideMenuLayout) commonViewHolder.getItemView();
-                itemView.closeMenu();
+                Toast.makeText(SideMenuActivity.this,"click content",Toast.LENGTH_SHORT).show();
             }
 
             @Override
