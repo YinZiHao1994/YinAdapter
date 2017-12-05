@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yin.source.com.yinadapter.SideMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:background="@android:color/holo_green_dark"
+    app:menu_trigger="0.1">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="content"
+        android:textColor="@android:color/white"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="menu"
+        android:textSize="40sp" />
+
+</yin.source.com.yinadapter.SideMenuLayout>

@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:text="带加载更多的 adapter" />
 
+    <Button
+        android:id="@+id/btn_side_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="横划菜单" />
+
 </LinearLayout>
