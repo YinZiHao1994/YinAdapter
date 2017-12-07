@@ -123,7 +123,7 @@ public class SideMenuLayout extends FrameLayout {
 
     private void close() {
         if (viewDragHelper.smoothSlideViewTo(contentView, 0, 0)) {
-            ViewCompat.postInvalidateOnAnimation(this);
+            viewDragHelper.continueSettling(true);
         }
         if (menuState == MenuState.open) {
             menuState = MenuState.close;
@@ -132,7 +132,7 @@ public class SideMenuLayout extends FrameLayout {
 
     private void open() {
         if (viewDragHelper.smoothSlideViewTo(contentView, 0 - totalMenuWidth, 0)) {
-            ViewCompat.postInvalidateOnAnimation(this);
+            viewDragHelper.continueSettling(true);
         }
         if (menuState == MenuState.close) {
             menuState = MenuState.open;
@@ -143,9 +143,7 @@ public class SideMenuLayout extends FrameLayout {
     public void computeScroll() {
         super.computeScroll();
         // 开始执行动画
-        if (viewDragHelper.continueSettling(true)) {
-            ViewCompat.postInvalidateOnAnimation(this);
-        }
+        ViewCompat.postInvalidateOnAnimation(this);
     }
 
     @Override
