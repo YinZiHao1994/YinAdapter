@@ -8,9 +8,9 @@
         <!--<enum name="right_menu"/>-->
         <!--</attr>-->
 
-        <attr name="menu_trigger" format="float">
+        <attr name="menu_trigger" format="float" />
+        <attr name="click_event_range" format="integer" />
 
-        </attr>
     </declare-styleable>
 
 </resources>

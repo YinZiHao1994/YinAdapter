@@ -25,6 +25,8 @@ public class SideMenuLayout extends FrameLayout {
 
     //触发菜单打开的比例，比如当用户划开菜单总长度的0.3之后松手菜单自动继续打开
     private float menuTrigger = 0.3f;
+    private float clickEventRange = 20;
+    private float actionDownX;
 
     //内容
     private View contentView;
@@ -58,6 +60,11 @@ public class SideMenuLayout extends FrameLayout {
                 float aFloat = a.getFloat(attr, -1);
                 if (aFloat != -1 && aFloat > 0) {
                     menuTrigger = aFloat;
+                }
+            } else if (attr == R.styleable.SideMenuLayout_click_event_range) {
+                int anInt = a.getInt(attr, -1);
+                if (anInt != -1 && anInt > 0) {
+                    clickEventRange = anInt;
                 }
             }
         }
@@ -151,11 +158,16 @@ public class SideMenuLayout extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         viewDragHelper.processTouchEvent(event);
         switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                actionDownX = event.getX();
             case MotionEvent.ACTION_MOVE:
-                // 开始拖动后，发送一个cancel事件用来取消点击效果
-                MotionEvent obtain = MotionEvent.obtain(event);
-                obtain.setAction(MotionEvent.ACTION_CANCEL);
-                super.onTouchEvent(obtain);
+                float absMoveX = Math.abs(actionDownX - event.getX());
+                // 拖动距离大于某一个值后，发送一个cancel事件用来取消点击效果
+                if (absMoveX > clickEventRange) {
+                    MotionEvent obtain = MotionEvent.obtain(event);
+                    obtain.setAction(MotionEvent.ACTION_CANCEL);
+                    super.onTouchEvent(obtain);
+                }
                 break;
         }
         return super.onTouchEvent(event);
