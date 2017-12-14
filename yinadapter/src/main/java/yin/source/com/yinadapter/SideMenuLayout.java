@@ -143,7 +143,9 @@ public class SideMenuLayout extends FrameLayout {
     public void computeScroll() {
         super.computeScroll();
         // 开始执行动画
-        ViewCompat.postInvalidateOnAnimation(this);
+        if (viewDragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
     }
 
     @Override
