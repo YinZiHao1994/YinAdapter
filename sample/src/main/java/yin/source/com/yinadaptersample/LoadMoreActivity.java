@@ -59,12 +59,13 @@ public class LoadMoreActivity extends AppCompatActivity {
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (personBeanList.size() > 100) {
-                            loadMoreWrapperAdapter.noMoreToLoad(true);
+                        if (personBeanList.size() > 22) {
+                            loadMoreWrapperAdapter.noMoreToLoad();
                             return;
                         }
                         List<PersonBean> init = PersonBean.init();
                         personBeanList.addAll(init);
+                        loadMoreWrapperAdapter.loadFinish();
                         loadMoreWrapperAdapter.notifyDataSetChanged();
                     }
                 }, 1000);

@@ -23,7 +23,7 @@ public class PersonBean {
 
     public static List<PersonBean> init() {
         List<PersonBean> list = new ArrayList<>();
-        for (int i=0;i<55;i++) {
+        for (int i=0;i<8;i++) {
             String name = String.valueOf(i);
             PersonBean personBean = new PersonBean(name, (i+1) % 5 == 0 ? 0 : 1, i);
             list.add(personBean);
