@@ -25,6 +25,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     private int status = STATUS_HIND;
 
     private LoadMoreDataType loadMoreDataType;
+    private static boolean lastLoadFinish = true;
 
     public LoadMoreWrapperAdapter(CommonAdapter<T> commonAdapter) {
         this(commonAdapter, 0);
@@ -100,6 +101,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
      */
     public void noMoreToLoad() {
         status = STATUS_NO_MORE;
+        lastLoadFinish = true;
         //用来刷新列表最后的加载更多栏，使其消失
         notifyItemChanged(commonAdapter.getItemCount());
     }
@@ -108,7 +110,11 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
      * 本次加载结束
      */
     public void loadFinish() {
-        status = STATUS_HIND;
+//        status = STATUS_HIND;
+        //当用户已经调用过一次加载更多之后，status 的默认状态为 STATUS_LOADING_MORE，
+        // 平衡当数据过少时一开始就有底部 loading 条和之后一直不能顺利显示 loading 条的问题
+        status = STATUS_LOADING_MORE;
+        lastLoadFinish = true;
         //用来刷新列表最后的加载更多栏，使其消失
         notifyItemChanged(commonAdapter.getItemCount());
     }
@@ -178,15 +184,14 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
                 int lastItemPosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
                 int itemCount = linearLayoutManager.getItemCount();
                 RecyclerView.Adapter adapter = recyclerView.getAdapter();
-                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    if (adapter instanceof LoadMoreWrapperAdapter) {
-                        LoadMoreWrapperAdapter loadMoreWrapperAdapter = (LoadMoreWrapperAdapter) adapter;
-                        int status = loadMoreWrapperAdapter.getStatus();
-                        // 判断是否滑动到了最后一个item，并且是向上滑动并且加载更多框隐藏（初始化状态）
-                        if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && status == STATUS_HIND) {
-                            loadMoreWrapperAdapter.setStatus(STATUS_LOADING_MORE);
-                            loadMoreWrapperAdapter.notifyItemChanged(itemCount);
-                        }
+                if (adapter instanceof LoadMoreWrapperAdapter) {
+                    LoadMoreWrapperAdapter loadMoreWrapperAdapter = (LoadMoreWrapperAdapter) adapter;
+                    int status = loadMoreWrapperAdapter.getStatus();
+                    // 判断是否滑动到了最后一个item，并且是向上滑动并且加载更多框隐藏（初始化状态）
+                    if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && status == STATUS_HIND) {
+                        loadMoreWrapperAdapter.setStatus(STATUS_LOADING_MORE);
+//                            loadMoreWrapperAdapter.notifyItemChanged(itemCount);
+                        loadMoreWrapperAdapter.notifyDataSetChanged();
                     }
                 }
 
@@ -201,9 +206,10 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
                         }
                     }
                     // 判断是否滑动到了最后一个item，并且是向上滑动
-                    if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && haveMore) {
+                    if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && haveMore && lastLoadFinish) {
                         //加载更多
                         onLoadMore();
+                        lastLoadFinish = false;
                     }
                 }
             }

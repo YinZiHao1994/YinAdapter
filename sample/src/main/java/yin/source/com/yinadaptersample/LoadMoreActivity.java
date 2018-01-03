@@ -59,7 +59,7 @@ public class LoadMoreActivity extends AppCompatActivity {
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (personBeanList.size() > 22) {
+                        if (personBeanList.size() > 22*10) {
                             loadMoreWrapperAdapter.noMoreToLoad();
                             return;
                         }
@@ -68,7 +68,7 @@ public class LoadMoreActivity extends AppCompatActivity {
                         loadMoreWrapperAdapter.loadFinish();
                         loadMoreWrapperAdapter.notifyDataSetChanged();
                     }
-                }, 1000);
+                }, 2000);
             }
         });
     }
