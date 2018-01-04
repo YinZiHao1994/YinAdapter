@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="yin.source.com.yinadaptersample.MainActivity">
+    tools:context="com.source.yin.yinadaptersample.MainActivity">
 
     <Button
         android:id="@+id/btn_same_view_type"
