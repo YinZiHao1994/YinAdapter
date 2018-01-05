@@ -18,6 +18,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
 
     @LayoutRes
     private int loadMoreLayoutRes;
+    private RecyclerView recyclerView;
 
     private static final int STATUS_LOADING_MORE = 0;
     private static final int STATUS_NO_MORE = 1;
@@ -76,6 +77,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
 
         //todo 此方法只在 RecyclerView 的 setAdapter 后调用到一次，此时若还没有调用 setLayoutManager ,则获取到的 layoutManager 为 null
         //对于网格布局的 Adapter 加载更多栏需要横跨与每一行单元格数量相同的数值
@@ -111,9 +113,16 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
      */
     public void loadFinish() {
 //        status = STATUS_HIND;
-        //当用户已经调用过一次加载更多之后，status 的默认状态为 STATUS_LOADING_MORE，
-        // 平衡当数据过少时一开始就有底部 loading 条和之后一直不能顺利显示 loading 条的问题
-        status = STATUS_LOADING_MORE;
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        int totalItemCount = getItemCount();
+        //获取最后一个显示的itemPosition
+        int lastItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+//        Log.e("yzh", "totalItemCount = " + totalItemCount + "\nitemCount = " + itemCount + "\nlastItemPosition = " + lastItemPosition);
+        //如果当前屏幕中显示的最后一项的位置存在并且+1小于所有数据的总条数，说明数据至少超出一屏幕，默认 status 状态改为 STATUS_LOADING_MORE，
+        //在底部显示加载更多的进度条
+        if (lastItemPosition != RecyclerView.NO_POSITION && lastItemPosition + 1 < totalItemCount) {
+            status = STATUS_LOADING_MORE;
+        }
         lastLoadFinish = true;
         //用来刷新列表最后的加载更多栏，使其消失
         notifyItemChanged(commonAdapter.getItemCount());

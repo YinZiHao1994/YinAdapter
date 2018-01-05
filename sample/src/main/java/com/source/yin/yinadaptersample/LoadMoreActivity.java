@@ -8,12 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import java.util.List;
-
 import com.source.yin.yinadapter.BaseAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
 import com.source.yin.yinadapter.LoadMoreWrapperAdapter;
 import com.source.yin.yinadaptersample.bean.PersonBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yin on 2017/11/15.
@@ -30,7 +31,7 @@ public class LoadMoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_load_more_adapter_sample);
         recyclerView = (RecyclerView) findViewById(R.id.recycle_view);
 
-        personBeanList = PersonBean.init();
+        personBeanList = new ArrayList<>();
 
         final BaseAdapter<PersonBean> adapter = new BaseAdapter<PersonBean>(getApplicationContext(), personBeanList, R.layout.item_male) {
             @Override
@@ -52,6 +53,10 @@ public class LoadMoreActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(loadMoreWrapperAdapter);
 
+
+        personBeanList.addAll(PersonBean.init());
+        loadMoreWrapperAdapter.notifyDataSetChanged();
+        loadMoreWrapperAdapter.loadFinish();
         recyclerView.addOnScrollListener(new LoadMoreWrapperAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
