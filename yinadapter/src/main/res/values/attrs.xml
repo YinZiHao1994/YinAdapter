@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="SideMenuLayout">
-        <!--<attr name="side_menu_type" format="enum">-->
-        <!--<enum name="content"/>-->
-        <!--<enum name="left_menu"/>-->
-        <!--<enum name="right_menu"/>-->
-        <!--</attr>-->
-
-        <attr name="menu_trigger" format="float" />
-        <attr name="click_event_range" format="integer" />
-
-    </declare-styleable>
-
 </resources>

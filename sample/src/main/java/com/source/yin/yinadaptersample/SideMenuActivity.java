@@ -8,12 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.List;
-
 import com.source.yin.yinadapter.BaseAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
-import com.source.yin.yinadapter.SideMenuLayout;
 import com.source.yin.yinadaptersample.bean.PersonBean;
+import com.source.yin.yinlayout.sidemenulayout.SideMenuLayout;
+
+import java.util.List;
 
 /**
  * Created by yin on 2017/12/4.
