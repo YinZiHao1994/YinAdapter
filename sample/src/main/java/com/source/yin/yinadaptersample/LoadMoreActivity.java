@@ -64,7 +64,7 @@ public class LoadMoreActivity extends AppCompatActivity {
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (personBeanList.size() > 22*10) {
+                        if (personBeanList.size() > 22 * 10) {
                             loadMoreWrapperAdapter.noMoreToLoad();
                             return;
                         }

@@ -199,8 +199,8 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
                     // 判断是否滑动到了最后一个item，并且是向上滑动并且加载更多框隐藏（初始化状态）
                     if (lastItemPosition >= (itemCount - 1) && wantToLoadMore && status == STATUS_HIND) {
                         loadMoreWrapperAdapter.setStatus(STATUS_LOADING_MORE);
-//                            loadMoreWrapperAdapter.notifyItemChanged(itemCount);
-                        loadMoreWrapperAdapter.notifyDataSetChanged();
+                        loadMoreWrapperAdapter.notifyItemChanged(itemCount);
+//                        loadMoreWrapperAdapter.notifyDataSetChanged();
                     }
                 }
 

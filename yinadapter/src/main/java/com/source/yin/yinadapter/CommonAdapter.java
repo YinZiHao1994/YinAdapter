@@ -36,7 +36,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     public abstract List<DataType<T>> getDataTypes();
 
 
-    void addDataTypes(List<DataType<T>> viewTypes) {
+    public void addDataTypes(List<DataType<T>> viewTypes) {
         if (viewTypes != null) {
             for (DataType<T> viewType : viewTypes) {
                 dataTypeManager.addViewType(viewType);
@@ -44,7 +44,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         }
     }
 
-    void addDataType(DataType<T> viewType) {
+    public void addDataType(DataType<T> viewType) {
         if (viewType != null) {
             dataTypeManager.addViewType(viewType);
         }

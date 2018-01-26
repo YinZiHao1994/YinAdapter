@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.List;
-
 import com.source.yin.yinadapter.BaseAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
 import com.source.yin.yinadaptersample.bean.PersonBean;
+
+import java.util.List;
 
 /**
  * Created by Yin on 2017/4/23.

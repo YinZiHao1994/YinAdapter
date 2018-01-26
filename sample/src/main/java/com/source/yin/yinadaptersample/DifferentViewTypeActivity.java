@@ -9,11 +9,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.List;
-
 import com.source.yin.yinadapter.SectionDecoration;
 import com.source.yin.yinadaptersample.adapter.DifferentViewTypeAdapter;
 import com.source.yin.yinadaptersample.bean.PersonBean;
+
+import java.util.List;
 
 /**
  * Created by Yin on 2017/4/23.
@@ -37,8 +37,8 @@ public class DifferentViewTypeActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
 
-        SectionDecoration<Integer> sectionDecoration = new SectionDecoration<Integer>
-                (this, new SectionDecoration.SectionCallback<Integer>() {
+        SectionDecoration<Integer> sectionDecoration = new SectionDecoration<>(this,
+                new SectionDecoration.SectionCallback<Integer>() {
                     @Override
                     public Integer getSectionSign(int position) {
                         return personBeanList.get(position).getSex();
@@ -48,7 +48,8 @@ public class DifferentViewTypeActivity extends AppCompatActivity {
                     public String getSectionTitle(int position) {
                         return personBeanList.get(position).getName();
                     }
-                }, new SectionDecoration.ConfigureCallback() {
+                },
+                new SectionDecoration.ConfigureCallback() {
                     @Override
                     public Paint getTextPaint() {
                         Paint textPaint = new Paint();
@@ -79,6 +80,7 @@ public class DifferentViewTypeActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }
