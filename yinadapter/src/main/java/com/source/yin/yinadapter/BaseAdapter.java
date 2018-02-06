@@ -45,13 +45,13 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-                BaseAdapter.this.onItemClick(commonViewHolder, view, position);
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, T data, int position) {
+                BaseAdapter.this.onItemClick(commonViewHolder, view, data, position);
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
-                return BaseAdapter.this.onItemLongClick(commonViewHolder, view, position);
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, T data, int position) {
+                return BaseAdapter.this.onItemLongClick(commonViewHolder, view, data, position);
             }
 
         };
@@ -63,9 +63,8 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
     //子类只需要实现此方法进行数据的绑定显示
     public abstract void onDataBind(CommonViewHolder viewHolder, T data, int position);
 
+    public abstract void onItemClick(CommonViewHolder commonViewHolder, View view, T data, int position);
 
-    public abstract void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
-
-    public abstract boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position);
+    public abstract boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, T data, int position);
 
 }

@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.source.yin.yinadapter.CommonAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
 import com.source.yin.yinadapter.DataType;
 import com.source.yin.yinadaptersample.R;
 import com.source.yin.yinadaptersample.bean.PersonBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Yin on 2017/4/23.
@@ -47,12 +47,12 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-                Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
+                Toast.makeText(context, "onItemClick position = " + position + "\ndata.name = " + data.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -76,12 +76,12 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
                 return false;
             }

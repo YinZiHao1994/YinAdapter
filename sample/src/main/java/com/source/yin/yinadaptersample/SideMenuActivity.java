@@ -45,12 +45,12 @@ public class SideMenuActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 Toast.makeText(SideMenuActivity.this,"click content",Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 return false;
             }
         });

@@ -159,12 +159,12 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         }
 
         @Override
-        public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
+        public void onItemClick(CommonViewHolder commonViewHolder, View view, T data, int position) {
 
         }
 
         @Override
-        public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+        public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, T data, int position) {
             return false;
         }
 

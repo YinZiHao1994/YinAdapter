@@ -30,8 +30,8 @@ public interface DataType<T> {
      */
     void dataBind(CommonViewHolder viewHolder, T data, int position);
 
-    void onItemClick(CommonViewHolder commonViewHolder, View view, int position);
+    void onItemClick(CommonViewHolder commonViewHolder, View view, T data, int position);
 
-    boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position);
+    boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, T data, int position);
 
 }

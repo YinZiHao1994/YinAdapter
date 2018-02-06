@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.source.yin.yinadapter.BaseAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
@@ -40,12 +41,12 @@ public class LoadMoreActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
+                Toast.makeText(context, "data.name = " + data.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 return false;
             }
         };

@@ -80,8 +80,9 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
             @Override
             public void onClick(View view) {
                 int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    dataTypeManager.getDateType(viewType).onItemClick(viewHolder, view, position);
+                if (position != RecyclerView.NO_POSITION && position < dataList.size()) {
+                    T data = dataList.get(position);
+                    dataTypeManager.getDateType(viewType).onItemClick(viewHolder, view, data, position);
                 }
             }
         });
@@ -90,8 +91,9 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
             @Override
             public boolean onLongClick(View view) {
                 int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    return dataTypeManager.getDateType(viewType).onItemLongClick(viewHolder, view, position);
+                if (position != RecyclerView.NO_POSITION && position < dataList.size()) {
+                    T data = dataList.get(position);
+                    return dataTypeManager.getDateType(viewType).onItemLongClick(viewHolder, view, data, position);
                 }
                 return false;
             }

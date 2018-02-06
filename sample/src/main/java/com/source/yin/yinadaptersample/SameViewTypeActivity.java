@@ -40,12 +40,12 @@ public class SameViewTypeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onItemClick(CommonViewHolder commonViewHolder, View view, int position) {
-                Toast.makeText(context, "onItemClick position = " + position, Toast.LENGTH_SHORT).show();
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
+                Toast.makeText(context, "onItemClick position = " + position + "\ndata.name = " + data.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, int position) {
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
                 Toast.makeText(context, "onItemLongClick position = " + position, Toast.LENGTH_SHORT).show();
                 return false;
             }
