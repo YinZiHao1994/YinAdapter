@@ -9,17 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.source.yin.yinadaptersample.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.source.yin.yinadaptersample.DifferentViewTypeActivity" />
-        <activity android:name="com.source.yin.yinadaptersample.SameViewTypeActivity"/>
-        <activity android:name="com.source.yin.yinadaptersample.LoadMoreActivity"/>
-        <activity android:name="com.source.yin.yinadaptersample.SideMenuActivity"/>
+        <activity android:name=".DifferentViewTypeActivity" />
+        <activity android:name=".SameViewTypeActivity" />
+        <activity android:name=".LoadMoreActivity" />
+        <activity android:name=".SideMenuActivity" />
+        <activity android:name=".UseItemTouchHelperActivity"></activity>
     </application>
 
 </manifest>

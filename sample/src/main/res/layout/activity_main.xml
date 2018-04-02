@@ -31,4 +31,9 @@
         android:layout_height="wrap_content"
         android:text="横划菜单" />
 
+    <Button
+        android:id="@+id/btn_touch_helper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拖拽排序和横划删除" />
 </LinearLayout>
