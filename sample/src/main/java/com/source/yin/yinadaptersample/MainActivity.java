@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnLoadMoreAdapter;
     private Button btnSideMenu;
     private Button btnTouchHelper;
+    private Button btnWithSectionDecoration;
 
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLoadMoreAdapter = (Button) findViewById(R.id.btn_load_more_adapter);
         btnSideMenu = findViewById(R.id.btn_side_menu);
         btnTouchHelper = findViewById(R.id.btn_touch_helper);
+        btnWithSectionDecoration = findViewById(R.id.btn_with_section_decoration);
 
 
         btnDifferentViewType.setOnClickListener(this);
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLoadMoreAdapter.setOnClickListener(this);
         btnSideMenu.setOnClickListener(this);
         btnTouchHelper.setOnClickListener(this);
+        btnWithSectionDecoration.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_different_view_type:
                 launchActivity(DifferentViewTypeActivity.class);
+                break;
+            case R.id.btn_with_section_decoration:
+                launchActivity(SectionDecorationActivity.class);
                 break;
             case R.id.btn_load_more_adapter:
                 launchActivity(LoadMoreActivity.class);

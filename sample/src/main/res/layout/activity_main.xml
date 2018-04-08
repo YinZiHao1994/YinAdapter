@@ -20,6 +20,12 @@
         android:text="不同显示样式" />
 
     <Button
+        android:id="@+id/btn_with_section_decoration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="带分组栏" />
+
+    <Button
         android:id="@+id/btn_load_more_adapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
