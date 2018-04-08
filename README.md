@@ -121,7 +121,7 @@ LoadMoreWrapperAdapter<PersonBean> loadMoreWrapperAdapter = new LoadMoreWrapperA
 LoadMoreWrapperAdapter<PersonBean> loadMoreWrapperAdapter = new LoadMoreWrapperAdapter<>(adapter, R.layout.load_more_layout);
 ```
   
-在 recyclerView 的 addOnScrollListener() 中设置 LoadMoreWrapperAdapter.OnLoadMoreListener 实现加载更多事件的回调  
+在 `recyclerView` 的 `addOnScrollListener()` 中设置 `LoadMoreWrapperAdapter.OnLoadMoreListener` 实现加载更多事件的回调  
 
 ```
     recyclerView.addOnScrollListener(new LoadMoreWrapperAdapter.OnLoadMoreListener() {
