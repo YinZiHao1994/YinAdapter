@@ -17,12 +17,12 @@ class DataTypeManager<T> {
     private int viewTypeKey;
 
 
-    int getLayoutId(int viewType) {
+    int getLayoutRes(int viewType) {
         DataType<T> dataType = dataTypeList.get(viewType);
         if (dataType == null) {
             throw new RuntimeException("not find matched dataType");
         }
-        return dataType.getLayoutId();
+        return dataType.getLayoutRes();
     }
 
     void dataBind(CommonViewHolder viewHolder, T data, int position) {

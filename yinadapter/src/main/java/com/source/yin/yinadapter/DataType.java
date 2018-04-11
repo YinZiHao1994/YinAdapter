@@ -10,9 +10,9 @@ import android.view.View;
 public interface DataType<T> {
 
     /**
-     * @return 不同数据需要显示的样式布局可能不同，在此返回它们对应的itemView的layoutId
+     * 返回不同数据对应的itemView布局的layoutId
      */
-    int getLayoutId();
+    int getLayoutRes();
 
     /**
      * @param data

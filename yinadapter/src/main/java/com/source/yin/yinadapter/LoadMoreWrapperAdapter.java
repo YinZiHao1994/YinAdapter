@@ -32,9 +32,12 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
         this(commonAdapter, 0);
     }
 
-    public LoadMoreWrapperAdapter(CommonAdapter<T> commonAdapter, int loadMoreLayoutRes) {
+    public LoadMoreWrapperAdapter(CommonAdapter<T> commonAdapter, @LayoutRes int loadMoreLayoutRes) {
         if (commonAdapter == null) {
             throw new RuntimeException("Adapter can not be null");
+        }
+        if (loadMoreLayoutRes == 0) {
+            loadMoreLayoutRes = R.layout.default_load_more_layout;
         }
         this.commonAdapter = commonAdapter;
         this.loadMoreLayoutRes = loadMoreLayoutRes;
@@ -131,7 +134,7 @@ public class LoadMoreWrapperAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     private class LoadMoreDataType implements DataType<T> {
 
         @Override
-        public int getLayoutId() {
+        public int getLayoutRes() {
             if (loadMoreLayoutRes == 0) {
                 return R.layout.default_load_more_layout;
             }

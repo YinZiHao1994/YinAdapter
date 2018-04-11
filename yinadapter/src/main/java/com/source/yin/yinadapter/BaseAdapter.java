@@ -13,11 +13,11 @@ import java.util.List;
 
 public abstract class BaseAdapter<T> extends CommonAdapter<T> {
 
-    private int layoutId;
+    private int layoutRes;
 
-    public BaseAdapter(Context context, List<T> dataList, int layoutId) {
+    public BaseAdapter(Context context, List<T> dataList, int layoutRes) {
         super(context, dataList);
-        this.layoutId = layoutId;
+        this.layoutRes = layoutRes;
     }
 
     @Override
@@ -25,8 +25,8 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
         List<DataType<T>> dataTypes = new ArrayList<>();
         DataType<T> dataType = new DataType<T>() {
             @Override
-            public int getLayoutId() {
-                return layoutId;
+            public int getLayoutRes() {
+                return layoutRes;
             }
 
             @Override

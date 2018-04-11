@@ -31,7 +31,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
     public List<DataType<PersonBean>> getDataTypes() {
         DataType<PersonBean> maleDateType = new DataType<PersonBean>() {
             @Override
-            public int getLayoutId() {
+            public int getLayoutRes() {
                 return R.layout.item_male;
             }
 
@@ -60,7 +60,7 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
         DataType<PersonBean> femaleDateType = new DataType<PersonBean>() {
             @Override
-            public int getLayoutId() {
+            public int getLayoutRes() {
                 return R.layout.item_female;
             }
 

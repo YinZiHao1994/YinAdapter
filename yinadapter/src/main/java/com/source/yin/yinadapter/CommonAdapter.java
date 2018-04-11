@@ -69,8 +69,8 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
 
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int layoutId = dataTypeManager.getLayoutId(viewType);
-        CommonViewHolder viewHolder = CommonViewHolder.createViewHolder(context, parent, layoutId);
+        int layoutRes = dataTypeManager.getLayoutRes(viewType);
+        CommonViewHolder viewHolder = CommonViewHolder.createViewHolder(context, parent, layoutRes);
         setOnLickListener(viewHolder, viewType);
         return viewHolder;
     }
