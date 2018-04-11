@@ -34,6 +34,8 @@ compile 'com.yinzihao:YinAdapter:{latest-version}'
   
 在构造函数中传入数据源和列表项的布局文件，在`onDataBind`中绑定数据源内容到布局中既可完成显示。
 
+![same_type](https://github.com/YinZiHao1994/YinAdapter/blob/master/sample/src/main/res/drawable/same_type.png)
+
 ## CommonAdapter&lt;T&gt;  
 适用于有超过一种 ItemViewType 的列表（例如聊天列表分我的和对方的）。  
 
@@ -110,6 +112,9 @@ compile 'com.yinzihao:YinAdapter:{latest-version}'
 `CommonAdapter` 需要你自己拼装出 `DataType` 的列表在抽象方法中实现返回。  
 注意每个 `DataType` 中的 `isMatching()` 方法需要判断数据源是否应该属于当前的 `DataType`，并且注意唯一性，如果一个数据即匹配一种 `DataType` 又匹配了另一种 `DataType`，则会抛出异常。  
   
+![different_type]
+(https://github.com/YinZiHao1994/YinAdapter/blob/master/sample/src/main/res/drawable/different_type.png)
+
 ## LoadMoreWrapperAdapter<PersonBean>&lt;T&gt;  
 当需要上拉列表加载更多功能时，只需要使用装饰者模式在原来的 `adapter` 上装饰 `LoadMoreWrapperAdapter` 作为新的 `adapter` 既可。  
 ```
@@ -140,4 +145,6 @@ LoadMoreWrapperAdapter<PersonBean> loadMoreWrapperAdapter = new LoadMoreWrapperA
 ```
   
 注意，当本次加载结束时需要手动调用 `loadMoreWrapperAdapter` 的 `loadFinish()` 方法。当没有更多数据时需要手动调用 `loadMoreWrapperAdapter` 的 `noMoreToLoad()` 方法。
+
+![load_more](https://github.com/YinZiHao1994/YinAdapter/blob/master/sample/src/main/res/drawable/load_more.gif)
 
