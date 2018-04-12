@@ -130,7 +130,7 @@ LoadMoreWrapperAdapter<PersonBean> loadMoreWrapperAdapter = new LoadMoreWrapperA
 ```
     recyclerView.addOnScrollListener(new LoadMoreWrapperAdapter.OnLoadMoreListener() {
         @Override
-        public void onLoadMore() {
+        public void onRefresh() {
             if (personBeanList.size() > 22 * 10) {
                 loadMoreWrapperAdapter.noMoreToLoad();
                 return;

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTouchHelper = findViewById(R.id.btn_touch_helper);
         btnWithSectionDecoration = findViewById(R.id.btn_with_section_decoration);
 
-
         btnDifferentViewType.setOnClickListener(this);
         btnSameViewType.setOnClickListener(this);
         btnLoadMoreAdapter.setOnClickListener(this);

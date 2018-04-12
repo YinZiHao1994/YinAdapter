@@ -48,9 +48,9 @@ class DataTypeManager<T> {
         }
         int matchedDataTypeSize = matchedDataTypeList.size();
         if (matchedDataTypeSize == 0) {
-            throw new IllegalArgumentException("No dataType matched the data :" + data.toString() + " in position :" + position);
+            throw new IllegalArgumentException("No dataType matched the data :" + data + " in position :" + position);
         } else if (matchedDataTypeSize > 1) {
-            throw new IllegalArgumentException(matchedDataTypeSize + " DataType.Class matched the data :" + data.toString() + " in position :" + position);
+            throw new IllegalArgumentException(matchedDataTypeSize + " DataType.Class matched the data :" + data + " in position :" + position);
         } else {
             return matchedDataTypeList.get(0);
         }

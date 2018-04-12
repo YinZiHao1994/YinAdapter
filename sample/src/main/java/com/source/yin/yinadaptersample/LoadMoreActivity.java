@@ -57,7 +57,6 @@ public class LoadMoreActivity extends AppCompatActivity {
 
         personBeanList.addAll(PersonBean.init());
         loadMoreWrapperAdapter.notifyDataSetChanged();
-        loadMoreWrapperAdapter.loadFinish();
         recyclerView.addOnScrollListener(new LoadMoreWrapperAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
