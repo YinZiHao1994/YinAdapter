@@ -1,6 +1,7 @@
 package com.source.yin.yinadapter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,19 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
 
         dataTypeManager = new DataTypeManager<>();
         addDataTypes(getDataTypes());
+        setDefaultDataTypesForTheRest(getDefaultDataTypesForRest());
     }
 
     /**
      * @return 子类需要返回实现了{@link DataType}接口的List
      */
     public abstract List<DataType<T>> getDataTypes();
+
+    /**
+     * 为所有未匹配到的数据提供一个默认的 DataType（可选）
+     */
+    @Nullable
+    public abstract DataTypeForTheRest<T> getDefaultDataTypesForRest();
 
 
     public void addDataTypes(List<DataType<T>> viewTypes) {
@@ -47,6 +55,13 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonViewHo
     public void addDataType(DataType<T> viewType) {
         if (viewType != null) {
             dataTypeManager.addViewType(viewType);
+        }
+    }
+
+    private void setDefaultDataTypesForTheRest(DataTypeForTheRest<T> defaultDataTypesForTheRest) {
+        if (defaultDataTypesForTheRest != null) {
+            dataTypeManager.addViewType(defaultDataTypesForTheRest);
+            dataTypeManager.setDefaultDataTypesForRest(defaultDataTypesForTheRest);
         }
     }
 

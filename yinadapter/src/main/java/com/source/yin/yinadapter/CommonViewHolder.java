@@ -2,6 +2,9 @@ package com.source.yin.yinadapter;
 
 import android.content.Context;
 import android.support.v4.util.SparseArrayCompat;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,9 +59,13 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *  以下为{@link CommonViewHolder#getView(int)}} 的帮助方法
+     * 以下为{@link CommonViewHolder#getView(int)}} 的帮助方法
      */
     public TextView getTextView(int viewId) {
+        return getView(viewId);
+    }
+
+    public AppCompatTextView getAppCompatTextView(int viewId) {
         return getView(viewId);
     }
 
@@ -66,7 +73,15 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         return getView(viewId);
     }
 
+    public AppCompatImageView getAppCompatImageView(int viewId) {
+        return getView(viewId);
+    }
+
     public Button getButton(int viewId) {
+        return getView(viewId);
+    }
+
+    public AppCompatButton getAppCompatButton(int viewId) {
         return getView(viewId);
     }
 }

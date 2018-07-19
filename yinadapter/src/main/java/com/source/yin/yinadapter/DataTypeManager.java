@@ -15,7 +15,7 @@ class DataTypeManager<T> {
 
     private SparseArrayCompat<DataType<T>> dataTypeList = new SparseArrayCompat<>();
     private int viewTypeKey;
-
+    private DataTypeForTheRest<T> defaultDataTypesForRest;
 
     int getLayoutRes(int viewType) {
         DataType<T> dataType = dataTypeList.get(viewType);
@@ -48,7 +48,11 @@ class DataTypeManager<T> {
         }
         int matchedDataTypeSize = matchedDataTypeList.size();
         if (matchedDataTypeSize == 0) {
-            throw new IllegalArgumentException("No dataType matched the data :" + data + " in position :" + position);
+            if (defaultDataTypesForRest != null) {
+                return defaultDataTypesForRest;
+            } else {
+                throw new IllegalArgumentException("No dataType matched the data :" + data + " in position :" + position);
+            }
         } else if (matchedDataTypeSize > 1) {
             throw new IllegalArgumentException(matchedDataTypeSize + " DataType.Class matched the data :" + data + " in position :" + position);
         } else {
@@ -76,4 +80,7 @@ class DataTypeManager<T> {
         return dataTypeList.keyAt(indexOfValue);
     }
 
+    public void setDefaultDataTypesForRest(DataTypeForTheRest<T> defaultDataTypesForRest) {
+        this.defaultDataTypesForRest = defaultDataTypesForRest;
+    }
 }

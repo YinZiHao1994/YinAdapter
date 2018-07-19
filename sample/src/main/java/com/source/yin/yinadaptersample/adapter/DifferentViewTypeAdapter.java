@@ -1,6 +1,7 @@
 package com.source.yin.yinadaptersample.adapter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import com.source.yin.yinadapter.CommonAdapter;
 import com.source.yin.yinadapter.CommonViewHolder;
 import com.source.yin.yinadapter.DataType;
+import com.source.yin.yinadapter.DataTypeForTheRest;
 import com.source.yin.yinadaptersample.R;
 import com.source.yin.yinadaptersample.bean.PersonBean;
 
@@ -37,6 +39,9 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
             @Override
             public boolean isMatching(PersonBean data, int position) {
+                if (data == null) {
+                    return false;
+                }
                 return data.getSex() == 1;
             }
 
@@ -66,6 +71,9 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
 
             @Override
             public boolean isMatching(PersonBean data, int position) {
+                if (data == null) {
+                    return false;
+                }
                 return data.getSex() == 0;
             }
 
@@ -90,5 +98,32 @@ public class DifferentViewTypeAdapter extends CommonAdapter<PersonBean> {
         list.add(maleDateType);
         list.add(femaleDateType);
         return list;
+    }
+
+    @Nullable
+    @Override
+    public DataTypeForTheRest<PersonBean> getDefaultDataTypesForRest() {
+        return new DataTypeForTheRest<PersonBean>() {
+            @Override
+            public int getLayoutRes() {
+                return R.layout.item_the_rest;
+            }
+
+            @Override
+            public void dataBind(CommonViewHolder viewHolder, PersonBean data, int position) {
+                viewHolder.getTextView(R.id.tv_name).setText(data.getName());
+                viewHolder.<TextView>getView(R.id.tv_sex).setText("特别");
+            }
+
+            @Override
+            public void onItemClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
+
+            }
+
+            @Override
+            public boolean onItemLongClick(CommonViewHolder commonViewHolder, View view, PersonBean data, int position) {
+                return false;
+            }
+        };
     }
 }

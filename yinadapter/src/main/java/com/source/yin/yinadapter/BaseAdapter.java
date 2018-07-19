@@ -1,6 +1,7 @@
 package com.source.yin.yinadapter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -58,6 +59,12 @@ public abstract class BaseAdapter<T> extends CommonAdapter<T> {
 
         dataTypes.add(dataType);
         return dataTypes;
+    }
+
+    @Nullable
+    @Override
+    public DataTypeForTheRest<T> getDefaultDataTypesForRest() {
+        return null;
     }
 
     //子类只需要实现此方法进行数据的绑定显示
