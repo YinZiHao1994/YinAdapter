@@ -49,6 +49,7 @@ class DataTypeManager<T> {
         int matchedDataTypeSize = matchedDataTypeList.size();
         if (matchedDataTypeSize == 0) {
             if (defaultDataTypesForRest != null) {
+//                Log.w(this.getClass().getSimpleName(), "data " + data + " in position " + position + " match no data type ,will use 'defaultDataTypesForRest'");
                 return defaultDataTypesForRest;
             } else {
                 throw new IllegalArgumentException("No dataType matched the data :" + data + " in position :" + position);
